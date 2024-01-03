@@ -1,3 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --yellow: #e6f500;
+    --white: #f5f5f5;
+    --pink: #e600f5;
+    --blue: #000ef5;
+    --red: #f50000;
+    --green: #06f006;
+}
+
+.container {
+    text-align: center;
+}
+
+.game {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* BOARD */
 .board {
     display: grid;
     grid-template-columns: repeat(3, 150px);
@@ -9,6 +36,8 @@
     height: 320px;
     padding: 15px;
     border-radius: 30px;
+    box-sizing: unset;
+    /* margin: 20px auto; */
 }
 
 .color {
@@ -21,20 +50,31 @@
 }
 
 .yellow {
-    background-color: #e6f500;
+    background-color: var(--yellow);
 }
 .white {
-    background-color: #f5f5f5;
+    background-color: var(--white);
 }
 .pink {
-    background-color: #e600f5;
+    background-color: var(--pink);
 }
 .blue {
-    background-color: #000ef5;
+    background-color: var(--blue);
 }
 .red {
-    background-color: #f50000;
+    background-color: var(--red);
 }
 .green {
-    background-color: #06f006;
+    background-color: var(--green);
+}
+
+/* DICE */
+
+.die {
+    width: 100px;
+    height: 100px;
+    background-color: var(--pink);
+    margin: 10px;
+    border: solid 5px black;
+    border-radius: 30px;
 }
