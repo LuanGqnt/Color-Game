@@ -11,6 +11,7 @@
     --blue: #000ef5;
     --red: #f50000;
     --green: #06f006;
+    --empty: #000;
 }
 
 .container {
@@ -37,7 +38,6 @@
     padding: 15px;
     border-radius: 30px;
     box-sizing: unset;
-    /* margin: 20px auto; */
 }
 
 .color {
@@ -50,22 +50,25 @@
 }
 
 .yellow {
-    background-color: var(--yellow);
+    background-color: var(--yellow) !important;
 }
 .white {
-    background-color: var(--white);
+    background-color: var(--white) !important;
 }
 .pink {
-    background-color: var(--pink);
+    background-color: var(--pink) !important;
 }
 .blue {
-    background-color: var(--blue);
+    background-color: var(--blue) !important;
 }
 .red {
-    background-color: var(--red);
+    background-color: var(--red) !important;
 }
 .green {
-    background-color: var(--green);
+    background-color: var(--green) !important; 
+}
+.empty {
+    background-color: var(--empty) !important;
 }
 
 /* DICE */
@@ -73,7 +76,6 @@
 .die {
     width: 100px;
     height: 100px;
-    background-color: var(--pink);
     margin: 10px;
     border: solid 5px black;
     border-radius: 30px;
