@@ -48,6 +48,9 @@
     justify-content: center;
     align-items: center;
 }
+.color:hover {
+    cursor: pointer;
+}
 
 .yellow {
     background-color: var(--yellow) !important;
@@ -79,4 +82,21 @@
     margin: 10px;
     border: solid 5px black;
     border-radius: 30px;
+}
+
+/* BET */
+
+.betAmount {
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    display: block;
+}
+
+.betBtn { 
+    margin-top: 10px;
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
 }
