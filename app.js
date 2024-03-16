@@ -33,6 +33,7 @@ const colorClick = (colorElement) => {
 
     // Adds a form that asks how much they want to bet
     const div = document.createElement('div');
+    div.classList.add('betDiv');
 
     const input = document.createElement('input');
     input.classList.add('betAmount');
@@ -44,6 +45,10 @@ const colorClick = (colorElement) => {
     button.classList.add('betBtn');
     div.appendChild(button);
 
+    button.addEventListener('click', () => {
+        bet(colorElement);
+    });
+
     colorElement.appendChild(div);
 
     gameState = 'BET';
@@ -53,6 +58,39 @@ for(let i = 0; i < colorElements.length; i++) {
     colorElements[i].addEventListener('click', () => {
         colorClick(colorElements[i]);
     });
+}
+
+//! BET
+const bet = (colorElement) => {
+    if(gameState !== 'BET') {
+        alert('The game state is not BET');
+        return;
+    }
+
+    const betAmount = document.querySelector('.betAmount').value;
+
+    if(betAmount < MINIMUM_BET) {
+        alert('The minimum bet is ' + MINIMUM_BET);
+        return;
+    } else if (money - betAmount < 0) {
+        alert('Insufficient funds!');
+        return;
+    }
+
+    money -= betAmount;
+    updateMoney();
+
+    document.querySelector('.betDiv').remove();
+
+    const span = document.createElement('span');
+    span.classList.add('betPlaceholder');
+    span.innerHTML = `₱${betAmount}`;
+
+    colorElement.appendChild(span);
+
+    alert('Roll!');
+
+    gameState = 'ROLL';
 }
 
 //! ROLLING

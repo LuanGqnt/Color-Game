@@ -100,3 +100,8 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+.betPlaceholder {
+    font-weight: bold;
+    font-size: 1.5em;
+}
