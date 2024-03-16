@@ -6,6 +6,9 @@ const COLORS = ['yellow', 'white', 'pink', 'blue', 'green', 'red'];
 const boardElement = document.querySelector('.board');
 const colorElements = boardElement.children;
 
+let colorPlayerBettedOn;
+let betAmount;
+
 // ! GAME STATES
 // - CHOOSE_COLOR
 // - BET
@@ -67,28 +70,30 @@ const bet = (colorElement) => {
         return;
     }
 
-    const betAmount = document.querySelector('.betAmount').value;
+    const betAmount_ = document.querySelector('.betAmount').value;
 
-    if(betAmount < MINIMUM_BET) {
+    if(betAmount_ < MINIMUM_BET) {
         alert('The minimum bet is ' + MINIMUM_BET);
         return;
-    } else if (money - betAmount < 0) {
+    } else if (money - betAmount_ < 0) {
         alert('Insufficient funds!');
         return;
     }
 
-    money -= betAmount;
+    money -= betAmount_;
     updateMoney();
+
+    betAmount = betAmount_;
 
     document.querySelector('.betDiv').remove();
 
     const span = document.createElement('span');
     span.classList.add('betPlaceholder');
-    span.innerHTML = `₱${betAmount}`;
+    span.innerHTML = `₱${betAmount_}`;
 
     colorElement.appendChild(span);
 
-    alert('Roll!');
+    colorPlayerBettedOn = colorElement;
 
     gameState = 'ROLL';
 }
@@ -113,5 +118,45 @@ const roll = () => {
             }
         }
     }
+
+    gameState = 'REWARD';
+
+    reward();
 }  
 rollButton.addEventListener('click', roll);
+
+//! REWARD
+const reward = () => {
+    if(gameState !== 'REWARD') {
+        alert('The game state is not REWARD');
+        return;
+    }
+
+    // colorPlayedBettedOn is the HTML element
+    const colorBetted = colorPlayerBettedOn.classList[1];
+
+    let colorsWon = 0;
+    let moneyWon = 0;
+    let actualMoneyGiven;
+
+    for(let i = 0; i < dice.length; i++) {
+        if(dice[i] === colorBetted)
+            colorsWon += 1;
+    }
+
+    moneyWon = betAmount * colorsWon;
+    actualMoneyGiven = moneyWon;
+    if(colorsWon >= 1)
+        actualMoneyGiven += Number(betAmount);
+
+    setTimeout(() => {
+        alert(`You just won ₱${moneyWon} !!!`);
+    }, 0);
+
+    money += actualMoneyGiven;
+    updateMoney();
+
+    document.querySelector('.betPlaceholder').remove();
+
+    gameState = 'CHOOSE_COLOR'; 
+}
